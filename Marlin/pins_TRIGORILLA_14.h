@@ -31,9 +31,10 @@
 #define IS_RAMPS_EFB
 
 // FAN0 / D9  - Typically used for the part fan on Anycubic Delta devices
-#define FAN_PIN 9
+#define FAN_PIN               9
 
 // FAN1 / D7  - Typically unused, can be allocated as Case Fan
+#define FAN1_PIN              7
 
 // FAN2 / D44 - Typical Extruder Fan on Anycubic Delta devices
 #define FAN2_PIN              44
