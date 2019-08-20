@@ -514,6 +514,7 @@
 //
 // Use Junction Deviation instead of traditional Jerk Limiting
 //
+// TODO: Could consider using this. Not sure how it works tho
 //#define JUNCTION_DEVIATION
 #if ENABLED(JUNCTION_DEVIATION)
   #define JUNCTION_DEVIATION_MM 0.02  // (mm) Distance from real junction edge
@@ -525,6 +526,7 @@
  * vibration and surface artifacts. The algorithm adapts to provide the best possible step smoothing at the
  * lowest stepping frequencies.
  */
+// TODO: Could consider using this. Not sure how it works tho
 //#define ADAPTIVE_STEP_SMOOTHING
 
 // Microstep setting (Only functional when stepper driver microstep pins are connected to MCU.
