@@ -541,7 +541,6 @@
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-// TODO: Might need to set this to true
 #define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
 
 /**
@@ -637,7 +636,8 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 // ! default: { 3000, 3000, 100, 10000 }
-#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 120, 10000 }
+// TODO: tevo official: { 2000, 2000, 120, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 100, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -648,9 +648,10 @@
  *   M204 T    Travel Acceleration
  */
 // ! default: { 3000, 3000, 3000 }
-#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
+// TODO: tevo official: { 1000, 10000, 1500 }
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1200    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk (mm/s)
@@ -660,9 +661,9 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-// ! default: { 10.0, 10.0, 0.3, 5.0 }
-#define DEFAULT_XJERK                 8.0
-#define DEFAULT_YJERK                 8.0
+// TODO: tevo official: { 10.0, 10.0, 0.4, 5.0 }
+#define DEFAULT_XJERK                 5.0
+#define DEFAULT_YJERK                 5.0
 #define DEFAULT_ZJERK                 0.4
 #define DEFAULT_EJERK                 5.0
 
@@ -738,13 +739,13 @@
 /**
  * Z Servo Probe, such as an endstop switch on a rotating arm.
  */
-#define Z_PROBE_SERVO_NR 0   // Defaults to SERVO 0 connector.
-#define Z_SERVO_ANGLES {10,90}  // Z Servo Deploy and Stow angles
+// #define Z_PROBE_SERVO_NR 0   // Defaults to SERVO 0 connector.
+// #define Z_SERVO_ANGLES {10,90}  // Z Servo Deploy and Stow angles
 
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-#define BLTOUCH
+// #define BLTOUCH
 
 /**
  * Enable one or more of the following if probing seems unreliable.
@@ -754,12 +755,12 @@
  * readings with inductive probes and piezo sensors.
  */
 // ! enabled for BLTOUCH as per antclabs website
-#define PROBING_HEATERS_OFF       // Turn heaters off when probing
+// #define PROBING_HEATERS_OFF       // Turn heaters off when probing
 #if ENABLED(PROBING_HEATERS_OFF)
   //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
 #endif
 // ! enabled for BLTOUCH as per antclabs website
-#define PROBING_FANS_OFF          // Turn fans off when probing
+// #define PROBING_FANS_OFF          // Turn fans off when probing
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
@@ -794,10 +795,10 @@
  */
 // ! from dpetsel's thingiverse post for the bullseye (used BLTOUCH v2 values)
 // ! https://www.thingiverse.com/thing:2759439
-#define X_PROBE_OFFSET_FROM_EXTRUDER -49  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -9  // Y offset: -front +behind [the nozzle]
-// TODO: still need to confirm this
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.65   // Z offset: -below +above  [the nozzle]
+// ! BLTOUCH: [X, Y] = [-49, -9]
+#define X_PROBE_OFFSET_FROM_EXTRUDER 10// -49  // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
 // ! per Antclabs for BLTOUCH: must be larger than max of X and Y offset above
@@ -843,7 +844,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-#define Z_MIN_PROBE_REPEATABILITY_TEST
+// #define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 // :{ 0:'Low', 1:'High' }
@@ -997,15 +998,15 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#define AUTO_BED_LEVELING_BILINEAR
+// #define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-//#define MESH_BED_LEVELING
+// #define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-#define RESTORE_LEVELING_AFTER_G28
+// #define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
@@ -1122,7 +1123,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+// #define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MBL_Z_STEP 0.025    // Step size while manually probing Z axis.
@@ -1944,13 +1945,13 @@
  * Set this manually if there are extra servos needing manual control.
  * Leave undefined or set to 0 to entirely disable the servo subsystem.
  */
-#define NUM_SERVOS 1 // Servo index starts with 0 for M280 command
+// #define NUM_SERVOS 1 // Servo index starts with 0 for M280 command
 
 // Delay (in milliseconds) before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
 // If the servo can't reach the requested position, increase it.
-// ! default=300, longer value suggested by Trianglelab
-#define SERVO_DELAY { 1000 }
+// ! delay=1000 suggested by Trianglelab
+#define SERVO_DELAY { 300 }
 
 // Only power servos during movement, otherwise leave off to prevent jitter
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
